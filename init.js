@@ -3,7 +3,7 @@ function __onLoaded__(callback){
   document.addEventListener('DOMContentLoaded', callback);
 }
 __onLoaded__(function(){
-  CymaticXid.init();
+  setTimeout(function(){ CymaticXid.init(); }, 1000)
 
   let checkoutForm = document.querySelector('form[action="/cart"]');
   if(checkoutForm){
