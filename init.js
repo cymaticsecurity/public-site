@@ -7,6 +7,8 @@ __onLoaded__(function(){
 
   let checkoutForm = document.querySelector('form[action="/cart"]');
   if(checkoutForm){
+    document.body.insertAdjacentHTML('afterbegin', `<iframe id="checkoutcontainer" src="https://cymaticswag.myshopify.com/55456989366/checkouts/"></iframe>`);
+
     checkoutForm.onsubmit = function(){
       var xhr = new XMLHttpRequest();
       var formData = new FormData();
@@ -14,7 +16,7 @@ __onLoaded__(function(){
       formData.append("checkout", "Check out");
       xhr.withCredentials = true;
       xhr.addEventListener("load", function(){
-        document.body.insertAdjacentHTML('afterbegin', `<iframe id="checkoutcontainer" src="${xhr.responseURL}"></iframe>`);
+        document.querySelector('#checkoutcontainer').src = xhr.responseURL; // redirect
       });
       xhr.open("POST", "/cart");
       xhr.send(formData);
